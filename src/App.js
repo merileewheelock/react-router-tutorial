@@ -15,7 +15,7 @@ class App extends Component {
 	}
 
 	componentDidMount() {
-		$.getJSON('https://api.themoviedb.org/3/search/movie?api_key=fec8b5ab27b292a68294261bb21b04a5&query=superman', (gists)=>{
+		$.getJSON('http://api.themoviedb.org/3/movie/now_playing?api_key=fec8b5ab27b292a68294261bb21b04a5', (gists)=>{
 			console.log(gists);
 			this.setState({
 				gists: gists.results
@@ -40,19 +40,19 @@ class App extends Component {
 		});
 
 		return (
-			//The router component does around EVERYTHING the router needs to control
+			//The router component goes around EVERYTHING the router needs to control
 			<Router>
 
 				<div className="container">
 					<h1>Welcome to the gists page</h1>
 					<Route path="/nba" component={nba} /> {/* This component will only show based on url */}
 					<div className="movie-list col-sm-6">
-                        {localGists}
-                    </div>
-                    <div className="col-sm-6">
-                        {/* :something, justlike express, means wildcard */}
-                        <Route path="/g/:movieId" component={Movie} />
-                    </div>
+						{localGists}
+					</div>
+					<div className="col-sm-6">
+						{/* :something, justlike express, means wildcard */}
+						<Route path="/g/:movieId" component={Movie} />
+					</div>
 				</div>
 			</Router>
 		);
